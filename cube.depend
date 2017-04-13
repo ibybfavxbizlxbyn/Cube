@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1491844755 source:c:\users\sergo\desktop\cube\main.cpp
+	"cube.h"
+
+1492107237 c:\users\sergo\desktop\cube\cube.h
+	"Point_3d.h"
+	"header.h"
+
+1492106942 c:\users\sergo\desktop\cube\point_3d.h
+	"point_2d.h"
+
+1492106737 c:\users\sergo\desktop\cube\point_2d.h
+
+1492002739 c:\users\sergo\desktop\cube\header.h
+	<iostream>
+	<fstream>
+	<cmath>
+
