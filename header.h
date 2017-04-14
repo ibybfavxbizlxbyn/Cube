@@ -4,7 +4,13 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <conio.h>
+#include <cstdlib>
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::ifstream;
+using std::ofstream;
 
 #endif // HEADER_H_INCLUDED

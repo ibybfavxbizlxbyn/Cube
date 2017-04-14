@@ -22,14 +22,22 @@ int main()
         }
         fin.close();
         from_file = true;
+        cout << "Enter DATA to file. Format: x y z a" << endl;
+        _getch();
     } else
+    if (answer == 'n')
     {
         from_file = false;
+    } else
+    {
+        cout << "Error: wrong input of DATA." << endl;
+        _getch();
+        system("exit");
     }
 
     cube cube1 = new cube(from_file);
 
-
+    cube1.print();
 
     return 0;
 }
