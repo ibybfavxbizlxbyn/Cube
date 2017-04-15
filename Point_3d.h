@@ -6,9 +6,9 @@
 class Point_3d : public Point_2d
 {
 protected:
-    int z;
+    double z;
 public:
-    Point_3d (int x = 0, int y = 0, int z = 0)
+    Point_3d (double x = 0, double y = 0, double z = 0)
     {
         this->x = x;
         this->y = y;
@@ -19,7 +19,7 @@ public:
         GET Method
     */
 
-    int Get_Z () const
+    double Get_Z () const
     {
         return z;
     }
@@ -28,7 +28,7 @@ public:
         Set Method
     */
 
-    void Set_Z (int z)
+    void Set_Z (double z)
     {
         this->z = z;
     }

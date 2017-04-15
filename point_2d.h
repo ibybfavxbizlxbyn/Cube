@@ -4,10 +4,10 @@
 class Point_2d
 {
 protected:
-    int x;
-    int y;
+    double x;
+    double y;
 public:
-    Point_2d (int x = 0, int y = 0)
+    Point_2d (double x = 0, double y = 0)
     {
         this->x = x;
         this->y = y;
@@ -17,11 +17,11 @@ public:
         GET Methods
     */
 
-    int Get_X () const
+    double Get_X () const
     {
         return x;
     }
-    int Get_Y () const
+    double Get_Y () const
     {
         return y;
     }
@@ -30,11 +30,11 @@ public:
         Set Methods
     */
 
-    void Set_X (int x)
+    void Set_X (double x)
     {
         this->x = x;
     }
-    void Set_Y (int y)
+    void Set_Y (double y)
     {
         this->y = y;
     }

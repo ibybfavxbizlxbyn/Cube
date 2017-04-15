@@ -47,24 +47,22 @@ public:
     cube (bool from_file)
     {
         cout << "Creating cube..." << endl;
+        int x, y, z;
         if (from_file == true)
         {
             ifstream fin;
             fin.open("input.txt");
-            int x, y, z;
             fin >> x >> y >> z >> a;
-            pic_coord[0].Set_X(x);
-            pic_coord[0].Set_Y(y);
-            pic_coord[0].Set_Z(z);
             fin.close();
         } else
         {
-            int x, y, z;
             cin >> x >> y >> z >> a;
-            pic_coord[0].Set_X(x);
-            pic_coord[0].Set_Y(y);
-            pic_coord[0].Set_Z(z);
         }
+
+        pic_coord[0].Set_X(x);
+        pic_coord[0].Set_Y(y);
+        pic_coord[0].Set_Z(z);
+
         //Pic calculation
         Pic_calc();
 
@@ -100,10 +98,64 @@ public:
     /*
         Print Method
     */
-    void print () const
+    void print (bool to_file = false) const
     {
+        if (to_file == false)
+            for (int i = 0; i < 8; i++)
+                cout << pic_coord[i].Get_X() << " " << pic_coord[i].Get_Y() << " " << pic_coord[i].Get_Z() << endl;
+        else
+            for (int i = 0; i < 8; i++)
+                cout << pic_coord[i].Get_X() << " " << pic_coord[i].Get_Y() << " " << pic_coord[i].Get_Z() << endl;
+    }
+
+    /*
+
+    */
+    void Change_coords (bool from_file)
+    {
+        int x, y, z;
+        if (from_file == true)
+        {
+            ifstream fin;
+            fin.open("angle.txt");
+            fin >> x >> y >> z;
+            fin.close();
+        } else
+        {
+            cin >> x >> y >> z;
+        }
+
         for (int i = 0; i < 8; i++)
-            cout << pic_coord[i].Get_X() << " " << pic_coord[i].Get_Y() << " " << pic_coord[i].Get_Z() << endl;
+        {
+            int x_ = pic_coord[i].Get_X();
+            int y_ = pic_coord[i].Get_Y();
+            int z_ = pic_coord[i].Get_Z();
+            pic_coord[i].Set_X(x_);
+            pic_coord[i].Set_Y(y_*cos(x) + z_*sin(x));
+            pic_coord[i].Set_Z(z_*cos(x) - y_*sin(x));
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            int x_ = pic_coord[i].Get_X();
+            int y_ = pic_coord[i].Get_Y();
+            int z_ = pic_coord[i].Get_Z();
+            pic_coord[i].Set_X(x_*cos(y) + z_*sin(y));
+            pic_coord[i].Set_Y(y_);
+            pic_coord[i].Set_Z(z_*cos(y) - x_*sin(y));
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            int x_ = pic_coord[i].Get_X();
+            int y_ = pic_coord[i].Get_Y();
+            int z_ = pic_coord[i].Get_Z();
+            pic_coord[i].Set_X(x_*cos(z) - y_*sin(z));
+            pic_coord[i].Set_Y(x_*sin(z) + y_*cos(z));
+            pic_coord[i].Set_Z(z_);
+        }
+        ofstream fout;
+        fout.open("ouput.txt");
+        print(true);
     }
 
 };
