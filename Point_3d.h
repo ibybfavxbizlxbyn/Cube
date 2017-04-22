@@ -8,10 +8,8 @@ class Point_3d : public Point_2d
 protected:
     double z;
 public:
-    Point_3d (double x = 0, double y = 0, double z = 0)
+    Point_3d (double x = 0, double y = 0, double z = 0) : Point_2d (x, y)
     {
-        this->x = x;
-        this->y = y;
         this->z = z;
     }
 

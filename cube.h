@@ -101,19 +101,26 @@ public:
     void print (bool to_file = false) const
     {
         if (to_file == false)
+        {
             for (int i = 0; i < 8; i++)
                 cout << pic_coord[i].Get_X() << " " << pic_coord[i].Get_Y() << " " << pic_coord[i].Get_Z() << endl;
+        }
         else
+        {
+            ofstream fout;
+            fout.open("output.txt");
             for (int i = 0; i < 8; i++)
-                cout << pic_coord[i].Get_X() << " " << pic_coord[i].Get_Y() << " " << pic_coord[i].Get_Z() << endl;
+                fout << pic_coord[i].Get_X() << " " << pic_coord[i].Get_Y() << " " << pic_coord[i].Get_Z() << endl;
+            fout.close();
+        }
     }
 
     /*
-
+		Method which changes cube`s coordinates by math formules 
     */
     void Change_coords (bool from_file)
     {
-        int x, y, z;
+        double x, y, z;
         if (from_file == true)
         {
             ifstream fin;
@@ -125,34 +132,39 @@ public:
             cin >> x >> y >> z;
         }
 
-        for (int i = 0; i < 8; i++)
-        {
-            int x_ = pic_coord[i].Get_X();
-            int y_ = pic_coord[i].Get_Y();
-            int z_ = pic_coord[i].Get_Z();
-            pic_coord[i].Set_X(x_);
-            pic_coord[i].Set_Y(y_*cos(x) + z_*sin(x));
-            pic_coord[i].Set_Z(z_*cos(x) - y_*sin(x));
-        }
+		for (int k = 0; k < 60; k++)
+		{
+			for (int i = 0; i < 8; i++)
+			{
+				double x_ = pic_coord[i].Get_X()/60.0;
+				double y_ = pic_coord[i].Get_Y()/60.0;
+				double z_ = pic_coord[i].Get_Z()/60.0;
+				pic_coord[i].Set_X(x_);
+				pic_coord[i].Set_Y(y_*cos(x) + z_*sin(x));
+				pic_coord[i].Set_Z(z_*cos(x) - y_*sin(x));
+			}
 
-        for (int i = 0; i < 8; i++)
-        {
-            int x_ = pic_coord[i].Get_X();
-            int y_ = pic_coord[i].Get_Y();
-            int z_ = pic_coord[i].Get_Z();
-            pic_coord[i].Set_X(x_*cos(y) + z_*sin(y));
-            pic_coord[i].Set_Y(y_);
-            pic_coord[i].Set_Z(z_*cos(y) - x_*sin(y));
-        }
-        for (int i = 0; i < 8; i++)
-        {
-            int x_ = pic_coord[i].Get_X();
-            int y_ = pic_coord[i].Get_Y();
-            int z_ = pic_coord[i].Get_Z();
-            pic_coord[i].Set_X(x_*cos(z) - y_*sin(z));
-            pic_coord[i].Set_Y(x_*sin(z) + y_*cos(z));
-            pic_coord[i].Set_Z(z_);
-        }
+			for (int i = 0; i < 8; i++)
+			{
+				double x_ = pic_coord[i].Get_X()/60.0;
+				double y_ = pic_coord[i].Get_Y()/60.0;
+				double z_ = pic_coord[i].Get_Z()/60.0;
+				pic_coord[i].Set_X(x_*cos(y) + z_*sin(y));
+				pic_coord[i].Set_Y(y_);
+				pic_coord[i].Set_Z(z_*cos(y) - x_*sin(y));
+			}
+			for (int i = 0; i < 8; i++)
+			{
+				double x_ = pic_coord[i].Get_X()/60.0;
+				double y_ = pic_coord[i].Get_Y()/60.0;
+				double z_ = pic_coord[i].Get_Z()/60.0;
+				pic_coord[i].Set_X(x_*cos(z) - y_*sin(z));
+				pic_coord[i].Set_Y(x_*sin(z) + y_*cos(z));
+				pic_coord[i].Set_Z(z_);
+			}
+		}
+
+
         ofstream fout;
         fout.open("ouput.txt");
         print(true);
